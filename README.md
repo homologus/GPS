@@ -1,4 +1,13 @@
-# GPS
+# GPS 
+
+From - 
+
+https://www.nature.com/articles/ncomms4513
+
+"Geographic population structure analysis of worldwide human populations infers their
+biogeographical origins", Eran Elhaik et al., Nature Communications 5, Article number: 3513 (2014).
+
+
 
 ## STEP3 - GPS
 
@@ -104,5 +113,16 @@ plink --noweb --bfile PAP --merge me.ped me.map --make-bed --out merge
 
 
 ## STEP0 - cleaning genotype file
+
+
+
+## Reference
+
+Please cite -
+
+https://www.nature.com/articles/ncomms4513
+
+"Geographic population structure analysis of worldwide human populations infers their
+biogeographical origins", Eran Elhaik et al., Nature Communications 5, Article number: 3513 (2014).
 
 

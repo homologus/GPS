@@ -5,8 +5,6 @@ https://www.nature.com/articles/ncomms4513
 "Geographic population structure analysis of worldwide human populations infers their 
 biogeographical origins", Eran Elhaik et al., Nature Communications 5, Article number: 3513 (2014).
 
-Published online: 29 April 2014
-
 "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, users will need to obtain permission from the license holder to reproduce the material. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/".
 
 
