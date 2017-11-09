@@ -95,6 +95,14 @@ Writing output files.
 
 ## STEP1 - plink
 
+In this step, you need to merge your genotype file with the genotypes of 134 persons
+provided by GPS. GPS-provided files are saved as PAP.bed, PAP.bim and PAP.fam.
+
 ~~~~~~
 plink --noweb --bfile PAP --merge me.ped me.map --make-bed --out merge
 ~~~~~~
+
+
+## STEP0 - cleaning genotype file
+
+
