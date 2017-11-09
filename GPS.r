@@ -7,24 +7,24 @@
 #		fname:		data file
 #		directory_name:	directory
 #
-#	Additional files needed
-#		geo.csv
-#		gen.csv
+#	Additional files used here:
+#		GEO.csv:	latitude and longitude for 143 persons
+#		GEN.csv:	genotype data for 143 persons
 #
 #	The original code is from GPS folder. All modifications are made
 #	by homolog.us.
 #
 
-GPS<-function(outfile_name='GPS_results.txt',N_best=10, fname="data.csv", directory_name="C://GPS//")
+GPS<-function(outfile_name='GPS_results.txt',N_best=10, fname="data.csv", directory_name="/root/gitfiles/GPS/STEP3-GPS")
 {
 
 	#
 	#	Read various data files
 	#
-	setwd(directory_name)    #set directory
-	GEO=read.csv("geo.csv", header=TRUE,row.names=1)
+	setwd(directory_name)					#set directory
+	GEO=read.csv("geo.csv", header=TRUE,row.names=1)	# read lat/long data
 	GEO=GEO[,1:2]
-	GEN=(read.csv("gen.csv", header=TRUE,row.names=1))  #as.numeric
+	GEN=(read.csv("gen.csv", header=FALSE,row.names=1))	#as.numeric
 	TRAINING_DATA=read.csv(fname, header=TRUE, row.names=1)
 
 	#
@@ -35,7 +35,7 @@ GPS<-function(outfile_name='GPS_results.txt',N_best=10, fname="data.csv", direct
 	x=dist(GEN)
 
 	#
-	#	If distances are too large or too small, set them as 0
+	#	If distance is too large or too small, set it as 0
 	#
 	LL=length(y)
 	for(l in 1:LL)
@@ -44,20 +44,19 @@ GPS<-function(outfile_name='GPS_results.txt',N_best=10, fname="data.csv", direct
 	}
 
 	#
-	#	Compute linear regression
+	#	Compute linear regression between y and x
 	#
 	eq1<-lm(y~x);
 
 
 	#
-	#	Loop over various groups in
-	#	training data to derive
-	#	latitude and longitude of
-	#	unknown sample
+	#	Loop over various groups in training data to derive
+	#	latitude and longitude of unknown sample
+	#
 	#
 	GROUPS=unique(TRAINING_DATA$GROUP)
 
-	write("Population\tSample_no\tSample_id\Prediction\tLat\tLon",outfile_name, append=FALSE)
+	write("Population\tSample_no\tSample_id\tPrediction\tLat\tLon",outfile_name, append=FALSE)
 
 	N_best<-min(N_best,length(GEO[,1]))
 
@@ -107,5 +106,5 @@ GPS<-function(outfile_name='GPS_results.txt',N_best=10, fname="data.csv", direct
 
 
 
-GPS(directory_name="D:/My Documents/Programs & Scripts/R/GPS1_paper")
+GPS(directory_name="/root/gitfiles/GPS/STEP3-GPS")
 
