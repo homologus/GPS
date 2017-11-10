@@ -8,29 +8,35 @@ https://www.nature.com/articles/ncomms4513
 biogeographical origins", Eran Elhaik et al., Nature Communications 5, Article number: 3513 (2014).
 
 
+## STEP0 - converting genotype file
 
-## STEP3 - GPS
+In this step, you need to convert genotype file to a format plink likes. Three small
+Python scripts (clean.py, data.map.py, data.ped.py) in the folder STEP0-clean-genotype 
+will perform this step.
 
-Create data.csv file with nine components of your genotype. The first field is some 
-arbitrary ID, the next nine fields are numbers (more on them later) and the last field is another 
-arbitrary ID.
-
-Then open R and run - 
-
-~~~~~~
-> source("GPS.r")
-~~~~~~
-
-You will see GPS_results.txt file bein created. 
+Input of this step is the genotype file.
+Output of this step is two files - me.ped and me.map.
 
 
-Where does one get those nine numbers from? For that, you need to run admixture, as 
-described below.
+## STEP1 - plink
+
+In this step, you need to merge your genotype file (me.map, me.ped)  with the genotypes 
+of 134 persons provided by GPS (PAP.bed, PAP.bim and PAP.fam). 
+
+Go to STEP1-plink folder and run - 
+
+~~~~
+plink --noweb --bfile PAP --merge me.ped me.map --make-bed --out merge
+~~~~
+
+plink will create files merge.bed, merge.bim and merge.fam that you can use
+in the following step.
+
 
 
 ## STEP2  - admixture
 
-Run admixture on a merged bed file -
+Go to STEP2-admixture folder and run admixture on a merged bed file -
 
 ~~~~~~
 admixture merge.bed 9
@@ -100,19 +106,26 @@ Pop8    0.258   0.193   0.200   0.113   0.241   0.233   0.233   0.241
 Writing output files.
 ~~~~~~
 
+The last line in the file has nine numbers, which will go as the input for the
+next step. 
+
+WARNING: Those nine numbers need to be rearranged. 
 
 
-## STEP1 - plink
+## STEP3 - GPS
 
-In this step, you need to merge your genotype file with the genotypes of 134 persons
-provided by GPS. GPS-provided files are saved as PAP.bed, PAP.bim and PAP.fam.
+Create data.csv file with nine components of your genotype. The first field is some
+arbitrary ID, the next nine fields are numbers (more on them later) and the last field is another
+arbitrary ID.
 
-~~~~~~
-plink --noweb --bfile PAP --merge me.ped me.map --make-bed --out merge
-~~~~~~
+Then open R and run -
 
+~~~~
+> source("GPS.r")
+~~~~
 
-## STEP0 - cleaning genotype file
+You will see GPS_results.txt file bein created.
+
 
 
 
